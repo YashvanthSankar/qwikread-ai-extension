@@ -4,15 +4,15 @@ document.getElementById("summarizeButton").addEventListener("click", () => {
     console.error("Could not find summaryOutput element");
     return;
   }
-  output.innerHTML = '<p class="italic">⏳ Summarizing...</p>';
+  output.innerHTML = '<p class="italic">\u23F3 Summarizing...</p>';
 
   const summaryType = document.getElementById("summaryType")?.value;
 
   // Get the Gemini API key from storage
-  chrome.storage.sync.get(["geminiAPIKey"], ({ geminiAPIKey }) => {
-    if (!geminiAPIKey) {
+  chrome.storage.sync.get(["openrouterAPIKey"], ({ openrouterAPIKey }) => {
+    if (!openrouterAPIKey) {
       output.innerHTML =
-        '<p class="error">⚠️ Please set your Gemini API key in options.</p>';
+        '<p class="error">\u26A0\uFE0F Please set your Gemini API key in options.</p>';
       return;
     }
 
@@ -24,7 +24,7 @@ document.getElementById("summarizeButton").addEventListener("click", () => {
         async (response) => {
           if (chrome.runtime.lastError || !response || !response.text) {
             output.innerHTML =
-              '<p class="error">❌ Failed to extract article text.</p>';
+              '<p class="error">\u274C Failed to extract article text.</p>';
             return;
           }
 
@@ -34,13 +34,13 @@ document.getElementById("summarizeButton").addEventListener("click", () => {
             const summary = await getSummary(
               response.text,
               summaryType,
-              geminiAPIKey
+              openrouterAPIKey
             );
 
             output.innerHTML = `<p class="summary">${summary}</p>`;
           } catch (error) {
             console.error("Error getting summary:", error);
-            output.innerHTML = `<p class="error">❌ ${
+            output.innerHTML = `<p class="error">\u274C ${
               error.message || "An error occurred while summarizing."
             }</p>`;
             return;
@@ -66,16 +66,25 @@ async function getSummary(rawText, type, apiKey, retries = 3, delay = 2000) {
 
   try {
     const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`,
+      "https://openrouter.ai/api/v1/chat/completions",
       {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${apiKey}`,
+          "HTTP-Referer": "https://your-extension-id.chromiumapp.org", // Replace if needed
+        },
         body: JSON.stringify({
-          contents: [{ parts: [{ text: prompt }] }],
-          generationConfig: {
-            temperature: 0.3,
-            maxOutputTokens: 512,
-          },
+          model: "google/gemini-2.0-flash-exp:free",
+          messages: [
+            {
+              role: "system",
+              content: "You are a helpful summarization assistant.",
+            },
+            { role: "user", content: prompt },
+          ],
+          temperature: 0.5,
+          max_tokens: 512,
         }),
       }
     );
@@ -86,26 +95,24 @@ async function getSummary(rawText, type, apiKey, retries = 3, delay = 2000) {
         data?.error?.message ||
         `API request failed with status ${response.status}`;
 
-      // Retry logic on 503 (Service Unavailable)
       if (response.status === 503 && retries > 0) {
         document.getElementById("summaryOutput").innerHTML = `
-          <p class="italic text-yellow-500">🔁 Model busy, retrying in ${
+          <p class="italic text-yellow-500">\uD83D\uDD01 Model busy, retrying in ${
             delay / 1000
           }s...</p>
         `;
         await new Promise((resolve) => setTimeout(resolve, delay));
-        return await getSummary(rawText, type, apiKey, retries - 1, delay * 2); // exponential backoff
+        return await getSummary(rawText, type, apiKey, retries - 1, delay * 2);
       }
 
       throw new Error(errorMessage);
     }
 
     const data = await response.json();
-    if (!data.candidates || data.candidates.length === 0) {
-      throw new Error("No candidates returned from Gemini API");
-    }
-
-    return data.candidates[0].content.parts[0].text.trim();
+    return (
+      data.choices?.[0]?.message?.content.trim() ||
+      "\u26A0\uFE0F No summary returned."
+    );
   } catch (err) {
     throw err;
   }
@@ -119,7 +126,7 @@ document.getElementById("copyButton").addEventListener("click", () => {
 
   navigator.clipboard.writeText(txt).then(() => {
     const button = document.getElementById("copyButton");
-    prevText = button.textContent;
+    const prevText = button.textContent;
     button.textContent = "Copied!";
     setTimeout(() => {
       button.textContent = prevText;
