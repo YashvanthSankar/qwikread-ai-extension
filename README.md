@@ -6,11 +6,11 @@
 
 ## 🚀 Features
 
-- 🧠 AI-generated summaries using Gemini 1.5 Flash
-- 📝 Multiple summary types: Brief, Detailed, Bulleted, Headlines
-- 🪄 Clean and responsive UI
-- 🔑 API Key secure storage via Chrome Extension storage
-- 📋 One-click copy summary to clipboard
+-Summarize any article directly from your browser
+-Choose between Brief, Detailed, Bullet Points, or Headlines
+-Uses Google Gemini 1.5 Flash API for fast, intelligent summaries
+-Clean, responsive popup UI with copy functionality
+-Privacy-focused: your data stays on your device
 
 ---
 
@@ -80,11 +80,9 @@ This project is licensed under the [MIT License](LICENSE).
 
 ## 📸 Screenshots
 
-Popup UI
+![Options](screenshots/options_page.png)
 
 ![Popup](screenshots/popup_page.png)
-
-![Options](screenshots/options_page.png)
 
 ---
 
