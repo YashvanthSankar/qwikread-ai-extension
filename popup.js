@@ -110,3 +110,19 @@ async function getSummary(rawText, type, apiKey, retries = 3, delay = 2000) {
     throw err;
   }
 }
+
+document.getElementById("copyButton").addEventListener("click", () => {
+  const txt = document.getElementById("summaryOutput")?.innerText;
+  if (!txt || txt.trim() === "") {
+    return;
+  }
+
+  navigator.clipboard.writeText(txt).then(() => {
+    const button = document.getElementById("copyButton");
+    prevText = button.textContent;
+    button.textContent = "Copied!";
+    setTimeout(() => {
+      button.textContent = prevText;
+    }, 2000);
+  });
+});
