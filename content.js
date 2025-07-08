@@ -23,11 +23,7 @@ function extractArticleText() {
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === "extractArticleText") {
     const articleText = extractArticleText();
-    if (articleText) {
-      sendResponse({ articleText });
-    } else {
-      sendResponse({ error: "No article text found." });
-    }
+    sendResponse({ text: articleText });
   }
   return true;
 });

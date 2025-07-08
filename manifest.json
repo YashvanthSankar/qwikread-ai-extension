@@ -3,7 +3,7 @@
   "name": "QwikRead - AI Article Summarizer",
   "description": "Summarize any article instantly using AI.",
   "version": "1.0",
-  "permissions": ["activeTab", "scripting", "storage"],
+  "permissions": ["activeTab", "tabs","scripting", "storage"],
   "host_permissions": ["<all_urls>"],
 
   "action": {
