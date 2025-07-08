@@ -1,97 +1,109 @@
-# QwikRead – AI Article Summarizer Chrome Extension
+# 🌐 QwikRead – AI Article Summarizer Chrome Extension
 
-> QwikRead is a lightweight, AI-powered Chrome extension that helps you summarize articles instantly while browsing. With just one click, it extracts the content from the page you're on and delivers a concise summary—tailored to your preferred format.
+> **QwikRead** is a lightweight, AI-powered Chrome extension that instantly summarizes articles with a single click. It uses [OpenRouter](https://openrouter.ai) with Google’s Gemini 2 Flash model to deliver clean, fast, and context-aware summaries—right in your browser.
 
 ---
 
 ## 🚀 Features
 
--Summarize any article directly from your browser
--Choose between Brief, Detailed, Bullet Points, or Headlines
--Uses Google Gemini 1.5 Flash API for fast, intelligent summaries
--Clean, responsive popup UI with copy functionality
--Privacy-focused: your data stays on your device
+- 📰 Summarize any article on the web instantly
+- ✍️ Choose from: **Brief**, **Detailed**, **Bulleted**, or **Headlines-only** formats
+- ⚡ Powered by **Google Gemini 1.5 Flash** via **OpenRouter API**
+- 🧠 AI summaries with customizable temperature and length
+- 📋 One-click **Copy** to Clipboard
+- 🔒 Fully local: No user data is sent anywhere
 
 ---
 
-## ⚙️ Technologies Used
+## 🛠️ Built With
 
-- HTML, CSS
-- Vanilla JavaScript
-- Chrome Extensions API (Manifest V3)
-- Google Gemini API (v1beta, model: `gemini-1.5-flash`)
+- HTML, CSS, JavaScript
+- Chrome Extensions API (**Manifest v3**)
+- [OpenRouter.ai](https://openrouter.ai) API (model: `google/gemini-1.5-flash`)
 
 ---
 
-## 🛠️ Setup & Installation
+## ⚙️ Setup Instructions
 
-1. **Clone the repository**
+### 1. Clone the Repository
 
 ```bash
 git clone https://github.com/YOUR_USERNAME/qwikread-ai-extension.git
 cd qwikread-ai-extension
 ```
 
-2. **Get a Gemini API Key**
+---
 
-   - Visit [Google AI Studio](https://makersuite.google.com/app/apikey)
-   - Create and copy your free API key
+### 2. Get an OpenRouter API Key
 
-3. **Load into Chrome**
-
-   - Go to `chrome://extensions`
-   - Enable **Developer Mode**
-   - Click **"Load unpacked"** and select the project folder
-
-4. **Set your API Key**
-   - Click the extension icon → **Options**
-   - Paste your Gemini API key and save
+- Visit [https://openrouter.ai](https://openrouter.ai)
+- Sign in and generate a free API key
 
 ---
 
-## 🧪 Usage
+### 3. Load the Extension into Chrome
 
-1. Navigate to any blog/article/webpage
-2. Click on the **QwikRead** Chrome extension
-3. Choose your summary type (e.g., Brief, Bulleted, Detailed, Headlines only)
-4. Click **Summarize** ✨
-5. Click **Copy** to save it to clipboard
+1. Go to `chrome://extensions`
+2. Enable **Developer mode**
+3. Click **"Load unpacked"**
+4. Select the `qwikread-ai-extension` folder
 
 ---
 
-## 🔐 Secure API Storage
+### 4. Set Up the API Key
 
-QwikRead stores your Gemini API key using `chrome.storage.sync` – it never exposes your key in code or UI.
+- Click the extension icon → **Options**
+- Paste your OpenRouter API key and click **Save**
+
+---
+
+## 🧪 How to Use
+
+1. Open any article or blog post
+2. Click the **QwikRead** extension icon
+3. Choose your desired summary format:
+   - Brief (3 lines)
+   - Detailed (5–7 lines)
+   - Bulleted points
+   - Headlines (all caps)
+4. Click **Summarize** ✅
+5. Click **Copy** to grab the summary text to clipboard
+
+---
+
+## 🔐 Security & Privacy
+
+- Your API key is securely stored via `chrome.storage.sync`
+- No article text or user info is logged or stored
+- Entire processing happens client-side + OpenRouter (no middle server)
+
+---
+
+## 🖼 Screenshots
+
+![summary](screenshots/summary_generated.png)
+![options](screenshots/options_page.png)
+![popup_in_browser](screenshots/sample_popup.png)
+![popup](screenshots/full_popup_screen.png)
 
 ---
 
 ## 📄 License
 
-This project is licensed under the [MIT License](LICENSE).
+This project is licensed under the [MIT License](./LICENSE).
 
 ---
 
 ## 🙌 Acknowledgements
 
-- [Google AI Studio](https://makersuite.google.com/)
-- [Chrome Extensions Docs](https://developer.chrome.com/docs/extensions/)
+- [OpenRouter](https://openrouter.ai) – AI API Gateway
+- [Google Gemini](https://deepmind.google/technologies/gemini/)
+- [Chrome Extensions Documentation](https://developer.chrome.com/docs/extensions/)
 
 ---
 
-## 📸 Screenshots
+## ⭐ Show Your Support
 
-![Options](screenshots/options_page.png)
-
-![Popup](screenshots/popup_page.png)
-
----
-
-This project is licensed under the [MIT License](./LICENSE).
-
----
-
-## ⭐️ Show Your Support
-
-If you find this project helpful, feel free to ⭐️ the repo and share it!
+If you like this project, please consider giving it a ⭐ on GitHub and sharing it with friends!
 
 ---
