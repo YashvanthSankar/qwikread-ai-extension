@@ -1,6 +1,4 @@
-# 🔍 QwikRead – AI-powered Article Summarizer Chrome Extension
-
-This project is licensed under the [MIT License](./LICENSE).
+# 🔍 QwikRead – AI Article Summarizer Chrome Extension
 
 > **Summarize any article instantly** using Google's Gemini API — right from your browser tab.
 
@@ -88,6 +86,10 @@ Popup UI
 ![Popup](screenshots/popup_page.png)
 
 ![Options](screenshots/options_page.png)
+
+---
+
+This project is licensed under the [MIT License](./LICENSE).
 
 ---
 
