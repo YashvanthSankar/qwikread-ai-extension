@@ -1,6 +1,6 @@
 # QwikRead – AI Article Summarizer Chrome Extension
 
-> **Summarize any article instantly** using Google's Gemini API — right from your browser tab.
+> QwikRead is a lightweight, AI-powered Chrome extension that helps you summarize articles instantly while browsing. With just one click, it extracts the content from the page you're on and delivers a concise summary—tailored to your preferred format.
 
 ---
 
@@ -8,10 +8,18 @@
 
 - 🧠 AI-generated summaries using Gemini 1.5 Flash
 - 📝 Multiple summary types: Brief, Detailed, Bulleted, Headlines
-- 🪄 Clean UI with feedback and retry mechanism
+- 🪄 Clean and responsive UI
 - 🔑 API Key secure storage via Chrome Extension storage
-- ⚡ Retry logic with exponential backoff for 503 errors
 - 📋 One-click copy summary to clipboard
+
+---
+
+## ⚙️ Technologies Used
+
+- HTML, CSS
+- Vanilla JavaScript
+- Chrome Extensions API (Manifest V3)
+- Google Gemini API (v1beta, model: `gemini-1.5-flash`)
 
 ---
 
@@ -54,15 +62,6 @@ cd qwikread-ai-extension
 ## 🔐 Secure API Storage
 
 QwikRead stores your Gemini API key using `chrome.storage.sync` – it never exposes your key in code or UI.
-
----
-
-## ⚙️ Technologies Used
-
-- HTML, CSS
-- Vanilla JavaScript
-- Chrome Extensions API (Manifest V3)
-- Google Gemini API (v1beta, model: `gemini-1.5-flash`)
 
 ---
 
