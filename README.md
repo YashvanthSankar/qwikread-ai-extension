@@ -1,4 +1,4 @@
-# 🔍 QwikRead – AI Article Summarizer Chrome Extension
+# QwikRead – AI Article Summarizer Chrome Extension
 
 > **Summarize any article instantly** using Google's Gemini API — right from your browser tab.
 
